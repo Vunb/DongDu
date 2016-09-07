@@ -1,0 +1,16 @@
+{
+    "name": "dongdu",
+    "version": "0.9.1",
+    "description": "Node.js Addons for DongDu",
+    "main": "dongdu.js",
+    "private": true,
+    "gypfile": true,
+    "scripts": {
+        "configure": "node-gyp configure",
+        "build": "node-gyp build"
+    },
+    "dependencies": {
+        "bindings": "~1.2.1",
+        "nan": "^2.0.0"
+    }
+}
