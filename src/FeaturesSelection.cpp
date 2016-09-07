@@ -35,7 +35,7 @@ void FeaturesSelection::selection()
 	// convert map<string, size_t> to string's array[size_t]
 	size_t mapsize = _strmap.size(); 
 	cout << mapsize << endl;
-	string dummy[mapsize + 1]; 
+	string* dummy = new string[mapsize + 1]; 
 	memset(dummy, sizeof(dummy), 0);
 	map<string, size_t>::iterator it = _strmap.begin();
 	for(; it != _strmap.end(); ++it)
