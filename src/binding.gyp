@@ -8,6 +8,7 @@
                 "Feats.cpp",
                 "FeaturesSelection.cpp",
                 "Machine.cpp",
+                "Predictor.cc",
                 "StrMap.cpp",
                 "SylMap.cpp",
                 "liblinear/linear.cpp",
