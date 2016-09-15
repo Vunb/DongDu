@@ -2,12 +2,13 @@
 
 using namespace std;
 
-DicMap::DicMap()
+DicMap::DicMap(string path)
 {
-	ifstream ifs("./data/wordlist.txt");
+	string dataFile = path + "/data/wordlist.txt";
+	ifstream ifs(dataFile);
 	if (!ifs) {
 		cout << "Failed to open file wordlist.txt" << endl;
-		cout << "Please check again folder ./data" << endl;
+		cout << "Please check: " << dataFile << endl;
 		return;
 	}
 	string str;

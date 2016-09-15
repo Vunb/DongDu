@@ -10,7 +10,7 @@ class DicMap {
 private:
 	std::map<std::string, int> dmap_;
 public:
-	DicMap();
+	DicMap(std::string path);
 	virtual ~DicMap();
 	bool isWord(const std::string str);
 };

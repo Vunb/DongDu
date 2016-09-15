@@ -20,10 +20,10 @@ class Feats{
 private:
 	vector<Feat*> feats_;
 	string regex(string text, FeatsReference ref);
-	SylMap _syl;
+	SylMap *_syl;
 
 public:
-	Feats();
+	Feats(string path);
 	virtual ~Feats();
 	size_t size(void);
 	vector<Feat*>* get();

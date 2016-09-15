@@ -2,8 +2,9 @@
 
 namespace std {
 
-Feats::Feats()
+Feats::Feats(string path)
 {
+	_syl = new SylMap(path);
 	feats_.clear();
 }
 
@@ -15,6 +16,7 @@ Feats::~Feats()
 		delete *it;
 	}
 	feats_.clear();
+	delete _syl;
 }
 
 size_t Feats::size()
@@ -56,7 +58,7 @@ string Feats::type(string word)
 	if (kh) return "O";
 	if (cs && (!(VH || vt))) return "N";
 	if (cs && (VH || vt)) return "O";
-	if (_syl.isVNESE(word)) {
+	if (_syl->isVNESE(word)) {
 		if (VH) return "U";
 		if (vt) return "L";
 	}

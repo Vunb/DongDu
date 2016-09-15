@@ -4,16 +4,16 @@
 
 Nan::Persistent<v8::Function> Predictor::constructor;
 
-Predictor::Predictor() {
-
-  this->machine = new Machine(3, "", PREDICT);
+Predictor::Predictor(string dataPath) {
+  cout << "Preparing load data ... " << endl;
+  this->machine = new Machine(3, dataPath, PREDICT);
   this->isModelLoaded = this->machine->load();
 
   if (!this->isModelLoaded) {
     cout << "Failed to load data from dongdu.model and dongdu.map" << endl;
     return;
   } else {
-    cout << "Load ok";
+    cout << "Loading data done!" << endl;
   }
 }
 
@@ -37,12 +37,18 @@ void Predictor::Init(v8::Local<v8::Object> exports) {
 
 void Predictor::New(const Nan::FunctionCallbackInfo<v8::Value> &info) {
   if (info.IsConstructCall()) {
-    // Invoked as constructor: `new Predictor()`
-    Predictor *obj = new Predictor();
+    // Invoked as constructor: `new Predictor(...)`
+    string dataPath = "";
+    if (!info[0]->IsUndefined()) {
+      v8::String::Utf8Value arg0(info[0]->ToString());
+      dataPath = std::string(*arg0);
+    }
+
+    Predictor *obj = new Predictor(dataPath);
     obj->Wrap(info.This());
     info.GetReturnValue().Set(info.This());
   } else {
-    // Invoked as plain function `Predictor()`, turn into construct call.
+    // Invoked as plain function `getPredictor()`, turn into construct call.
     const int argc = 1;
     v8::Local<v8::Value> argv[argc] = {info[0]};
     v8::Local<v8::Function> cons = Nan::New<v8::Function>(constructor);

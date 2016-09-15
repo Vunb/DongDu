@@ -63,7 +63,7 @@ bool StrMap::load(string path)
 {
 	fstream ifs(path.c_str());
 	if (!ifs) {
-		printf("Failed to open %s", path.c_str());
+		cout << "Failed to open" << path.c_str() << endl;
 		return false;
 	}
 

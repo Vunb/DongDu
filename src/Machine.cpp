@@ -16,12 +16,17 @@ size_t Machine::getByteOfUTF8(unsigned char c)
 
 Machine::Machine(int window_length, string path, StrMapReference ref)
 {
+	if (path == "") {
+		PATH = ".";		
+	} else {
+		PATH = path;
+	}
 	WINDOW_LENGTH = window_length;
-	PATH 				= path;
 	index_SPACE = 1;
 	index_UNDER = 2;
 	reference   = ref;
-	feats				= new Feats;
+	dicmap = new DicMap(PATH);
+	feats				= new Feats(PATH);
 	_model 			= new model;
 	vfeats 			= new vector<featuresOfSyllabel>;
 	vfeats->clear();
@@ -31,6 +36,7 @@ Machine::Machine(int window_length, string path, StrMapReference ref)
 Machine::~Machine()
 {
 	delete feats;
+	delete dicmap;
 }
 
 /* Convert a string to vector of featuresOfSyllabel */
@@ -93,7 +99,7 @@ void Machine::extract(string sentence, StrMapReference ref)
 				dummy = vfeats->at(k).syllabel ;
 				for (int z = k + 1; z < k + j; ++z)
 					dummy += " " + vfeats->at(z).syllabel;
-				if (dicmap.isWord(dummy)){
+				if (dicmap->isWord(dummy)){
 					// word segment is LEFT of dictionary features
 					if (				k	== i + 1 ) 	index = "L(" + itostr(k - i) + ")|";
 					// word segment is RIGHT of dictionary features
@@ -241,8 +247,10 @@ void Machine::featuresSelection()
 bool Machine::load()
 {
 	cout << "Start loading ..." << endl;
-	_model = load_model("./data/dongdu.model");
-	if (   !strmap.load("./data/dongdu.map")){
+	string strModel = PATH + "/data/dongdu.model";
+	string strMap = PATH + "/data/dongdu.map";
+	_model = load_model(strModel.c_str());
+	if (!strmap.load(strMap.c_str())){
 		cout << "End loading ..." << endl;
 		return false;
 	}

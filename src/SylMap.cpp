@@ -9,14 +9,15 @@
 
 namespace std {
 
-SylMap::SylMap()
+SylMap::SylMap(string path)
 {
 	_syl.clear();
 
-	ifstream ifs("./data/VNsyl.txt");
+	string dataFile = path + "/data/VNsyl.txt";
+	ifstream ifs(dataFile);
 
 	if (!ifs) {
-		cout << "Failed to open file ./data/VNsyl.txt" << endl;
+		cout << "Failed to open file:" << dataFile << endl;
 		return;
 	}
 

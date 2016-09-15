@@ -12,7 +12,7 @@ class SylMap {
 private:
 	set<string> _syl;
 public:
-	SylMap();
+	SylMap(string dataFile);
 	virtual ~SylMap();
 	bool isVNESE(string syllabel);
 };

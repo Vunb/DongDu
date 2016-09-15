@@ -20,7 +20,7 @@ private:
 	size_t index_UNDER;
 	size_t reference;
 	Feats* 		feats;
-	DicMap		dicmap;
+	DicMap*		dicmap;
 	StrMap		strmap;
 	model*		_model;
 	problem   _problem;

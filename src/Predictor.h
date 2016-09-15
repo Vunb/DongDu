@@ -9,13 +9,14 @@
 
 // https://github.com/nodejs/node-addon-examples/tree/master/6_object_wrap
 using namespace std;
+
 class Predictor : public Nan::ObjectWrap {
 public:
   static void Init(v8::Local<v8::Object> exports);
 
 private:
-  Machine* machine;
-  explicit Predictor();
+  Machine *machine;
+  explicit Predictor(string dataPath = "");
   ~Predictor();
 
   static void New(const Nan::FunctionCallbackInfo<v8::Value> &info);
