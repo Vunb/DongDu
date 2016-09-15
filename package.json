@@ -25,7 +25,7 @@
     "configure": "node-gyp configure",
     "build": "node-gyp build",
     "preinstall": "npm install node-pre-gyp",
-    "postinstall": "node-pre-gyp-github publish --release",
+    "postinstall": "node-pre-gyp package && node-pre-gyp-github publish --release",
     "install": "node-pre-gyp install --fallback-to-build",
     "test": "tape test/start.js | tap-spec"
   },
