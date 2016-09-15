@@ -1,0 +1,46 @@
+{
+    "name": "dongdu",
+    "version": "0.9.1",
+    "description": "Node.js Addon for DongDu",
+    "author": "Vunb",
+    "license": "MIT",
+    "main": "index.js",
+    "private": true,
+    "gypfile": true,
+    "url": "https://github.com/vunb/dongdu",
+    "homepage": "https://github.com/vunb/dongdu",
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:vunb/dongdu.git"
+    },
+    "keywords": [
+        "dongdu",
+        "vietnamese",
+        "wordsegment",
+        "nlp"
+    ],
+    "bugs": {
+        "url": "https://github.com/vunb/dongdu/issues"
+    },
+    "scripts": {
+        "configure": "node-gyp configure",
+        "build": "node-gyp build",
+        "preinstall": "npm install node-pre-gyp",
+        "install": "node-pre-gyp install --fallback-to-build",
+        "test": "tape test/start.js | tap-spec"
+    },
+    "binary": {
+        "module_name": "dongdu",
+        "module_path": "./lib/binding/",
+        "host": "https://github.com/vunb/dongdu/releases/download/",
+        "remote_path": "{version}"
+    },
+    "dependencies": {
+        "nan": "2.x",
+        "node-pre-gyp": "0.6.x"
+    },
+    "devDependencies": {
+        "tap-spec": "^4.1.1",
+        "tape": "^4.6.0"
+    }
+}
