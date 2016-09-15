@@ -10,7 +10,6 @@ install:
   - ps: Install-Product node $env:nodejs_version
   # install modules
   - npm install
-  - node-pre-gyp-github publish --release
 
 # Post-install test scripts.
 test_script:
